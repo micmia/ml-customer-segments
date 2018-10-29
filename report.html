@@ -13496,28 +13496,29 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="k">import</span> <span class="n">DecisionTreeRegressor</span>
 
-<span class="c1"># TODO: Make a copy of the DataFrame, using the &#39;drop&#39; function to drop the given feature</span>
-<span class="n">new_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Fresh&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">target_feature</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Fresh&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">,</span> <span class="s1">&#39;Grocery&#39;</span><span class="p">,</span> <span class="s1">&#39;Frozen&#39;</span><span class="p">,</span> <span class="s1">&#39;Detergents_Paper&#39;</span><span class="p">,</span> <span class="s1">&#39;Delicatessen&#39;</span><span class="p">]:</span>
+    <span class="c1"># TODO: Make a copy of the DataFrame, using the &#39;drop&#39; function to drop the given feature</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="n">target_feature</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># TODO: Split the data into training and testing sets(0.25) using the given feature as the target</span>
-<span class="c1"># Set a random state.</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">new_data</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Fresh&#39;</span><span class="p">]</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># TODO: Split the data into training and testing sets(0.25) using the given feature as the target</span>
+    <span class="c1"># Set a random state.</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">new_data</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">target_feature</span><span class="p">]</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="c1"># TODO: Create a decision tree regressor and fit it to the training set</span>
-<span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="c1"># TODO: Create a decision tree regressor and fit it to the training set</span>
+    <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-<span class="c1"># TODO: Report the score of the prediction using the testing set</span>
-<span class="n">score</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+    <span class="c1"># TODO: Report the score of the prediction using the testing set</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;predicted feature: </span><span class="si">%s</span><span class="s1">, score: </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">target_feature</span><span class="p">,</span> <span class="n">score</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -13534,7 +13535,12 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>-0.252469807688
+<pre>predicted feature: Fresh, score: -0.252470
+predicted feature: Milk, score: 0.365725
+predicted feature: Grocery, score: 0.602802
+predicted feature: Frozen, score: 0.253973
+predicted feature: Detergents_Paper, score: 0.728655
+predicted feature: Delicatessen, score: -11.663687
 </pre>
 </div>
 </div>
@@ -13560,7 +13566,9 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>I attempted to predict the <em>Fresh</em> feature. The reported prediction score was -0.252469807688. The <code>score</code> method returns the coefficient of determination <code>R^2</code> of the prediction. The reported <code>R^2</code> score is negative, which implies the model fails to fit the data and this feature is not relevant to the others features. So the <em>Fresh</em> feature is not necessary for identifying customers' spending habits.</p>
+<p>I attempted to predict all the features. The <code>score</code> method returns the coefficient of determination <code>R^2</code> of the prediction.</p>
+<p>The reported prediction scores of <em>Fresh</em> and <em>Delicatessen</em> were respectively -0.252470 and -11.663687. These two reported <code>R^2</code> scores are negative, which implies the models fail to fit the data and these features cannot be predicted by the others features. The <em>Fresh</em> and <em>Delicatessen</em> features can bring new information to the analysis. So these features are necessary for identifying customers' spending habits.</p>
+<p>On the other hand, the scores of <em>Grocery</em> and <em>Detergents</em>_<em>Paper</em> were respectively 0.602802 and 0.728655. The <em>Grocery</em> and <em>Detergents</em>_<em>Paper</em> features have strong correlations with the other features and they are predictable by the other features. So one or more of these two features could be unnecessary for identifying customers' spending habits.</p>
 
 </div>
 </div>
@@ -13676,9 +13684,9 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>The scatter matrix shows that the data points do not follow normal distribution and the distribution is skewed to left. From the graph, we can also see a large number of points of pair features distributed near 0 and several outliers.</p>
+<p>The scatter matrix shows that the data points do not follow normal distribution and the distribution is positively skewed. From the graph, we can also see a large number of points of pair features distributed near 0 and several outliers. This means we need to pre-process the data subsequently.</p>
 <p>The heatmap indicates correlation of some pairs of features: The <em>Detergents</em>_<em>Paper</em> and <em>Grocery</em> features are strongly linearly correlated with a correlation coefficient of 0.92. The <em>Grocery</em> and <em>Milk</em> pair and the <em>Detergents</em>_<em>Paper</em> and <em>Milk</em> pair seem to show some correlation with the coefficients of 0.73 and 0.66 respectively.</p>
-<p>This result confirms my suspicions about the relevance of the <em>Fresh</em> feature to predict. The <em>Fresh</em> feature does not significantly correlate with any other features.</p>
+<p>This result confirms my suspicions about the relevance of the <em>Fresh</em> and <em>Delicatessen</em> features to predict. These features do not significantly correlate with any other features. The result is also consistent with the previous predictions of <em>Grocery</em> and <em>Detergents</em>_<em>Paper</em>, which correlate strongly with each other, and they are almost redundant. So we need further analysis in the next steps, for example, PCA.</p>
 
 </div>
 </div>
